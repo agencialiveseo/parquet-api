@@ -19,10 +19,8 @@ const db = require('./db.js');
         if(!req.query.q)
             return res.status(400).send({error: "missing_query", error_details: "usage: /?q=select 2;"});
     
-        let query = req.query.q.replace('"', '\\"');
-
         try{
-            let result = await db.query(query);
+            let result = await db.query(req.query.q);
             res.send(result);
         } catch(error){
             console.log(error);
@@ -34,7 +32,7 @@ const db = require('./db.js');
         console.log(`Duckdb server is listenin on port ${port}`);
     });
 
-}).catch((err) => {
-    console.error(err);
+}).catch((error) => {
+    console.error(error);
     process.exit(1);
 });

@@ -22,13 +22,6 @@ RUN wget -O cli.zip "https://github.com/duckdb/duckdb/releases/download/$DUCKDB_
 	rm cli.zip && \
 	chmod +x duckdb
 
-WORKDIR /data
-
-# generate db and install httpfs
-RUN duckdb myduck.db 'CALL dbgen(sf=0.1)'
-RUN duckdb myduck.db 'select 42;'
-RUN duckdb myduck.db 'install "httpfs";'
-
 VOLUME ["/data"]
 
 EXPOSE 8080
