@@ -1,0 +1,1 @@
+docker run -ti -p 0.0.0.0:8087:8080 --rm --name parquet-api parquet-api
