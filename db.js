@@ -64,7 +64,10 @@ module.exports = function DB(){
                 query = "LOAD httpfs;" + query;
 
             // execute duckdb query in another process
-            exec(`duckdb ${dbpath} --json "${query}" | jq '.'`, function callback(error, stdout, stderr) {
+            exec(
+                `duckdb ${dbpath} --json "${query}" | jq '.'`, 
+                { maxBuffer: 1024 * 1024 * 4 },
+                function callback(error, stdout, stderr) {
                 if(error || stderr) {
                     error = error || stderr;
                     console.log(error);
