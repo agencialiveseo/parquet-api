@@ -7,8 +7,7 @@ RUN apt update
 
 RUN apt install -y \
 	wget \
-	ca-certificates \
-	jq
+	ca-certificates
 
 RUN apt-get clean
 

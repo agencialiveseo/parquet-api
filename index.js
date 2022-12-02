@@ -1,12 +1,14 @@
 const express = require('express');
 const db = require('./db.js');
 
+console.log("Starting application...");
+
 (new db()).then((db) => {
-    // start application
+    // Start application
     const app = express();
     const port = 8080;
 
-    // add simple authentication
+    // Add simple Headers authentication
     if(process.env.TOKEN?.length)
         app.use((req, res, next) => {
             if(req.headers.token != process.env.TOKEN)
@@ -28,6 +30,7 @@ const db = require('./db.js');
         }
     });
     
+    // make express start listening requests
     app.listen(port, () => {
         console.log(`Duckdb server is listenin on port ${port}`);
     });
