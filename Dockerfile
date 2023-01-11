@@ -1,7 +1,7 @@
 
 FROM node:16
 
-ARG ver=v0.6.0
+ARG ver=v0.6.1
 
 RUN apt update 
 
